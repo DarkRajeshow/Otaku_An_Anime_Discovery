@@ -13,12 +13,17 @@ export default function Choice() {
     const [internetError, setInternetError] = useState(false);
 
     let fetchAnime = async () => {
+        console.log(genres, status);
+        console.log(rating);
+        console.log(year);
         try {
             setLoading(true);
             setInternetError(false);
             setNoResult(false);
-            let animeData = await fetch(`https://kitsu.io/api/edge/anime?${genres.length !== 0 ? `&filter[genres]=${genres.join(",")}` : ""}${status.length !== 0 ? `&filter[status]=${status.join(",")}` : ""}${rating.length !== "" ? `&filter[ageRating]=${rating.join(",")}` : ""}${year !== "" ? `&filter[seasonYear]=${year}` : ""}&sort=popularityRank&page[limit]=12&fields[anime]=titles,description,posterImage,averageRating,episodeCount,status`);
+            console.log(`https://kitsu.io/api/edge/anime?${genres.length !== 0 ? `&filter[genres]=${genres.join(",")}` : ""}${status.length !== 0 ? `&filter[status]=${status.join(",")}` : ""}${rating.length !== 0 ? `&filter[ageRating]=${rating.join(",")}` : ""}${year !== "" ? `&filter[seasonYear]=${year}` : ""}&sort=popularityRank&page[limit]=12&fields[anime]=titles,description,posterImage,averageRating,episodeCount,status`);
+            let animeData = await fetch(`https://kitsu.io/api/edge/anime?${genres.length !== 0 ? `&filter[genres]=${genres.join(",")}` : ""}${status.length !== 0 ? `&filter[status]=${status.join(",")}` : ""}${rating.length !== 0 ? `&filter[ageRating]=${rating.join(",")}` : ""}${year !== "" ? `&filter[seasonYear]=${year}` : ""}&sort=popularityRank&page[limit]=12&fields[anime]=titles,description,posterImage,averageRating,episodeCount,status`);
             let parsedAnimeData = await animeData.json();
+            console.log(parsedAnimeData);
             setLoading(false);
             if (parsedAnimeData.data.length === 0) {
                 setNoResult(true);
@@ -40,7 +45,7 @@ export default function Choice() {
     return (
         <>
             <div className="heading m-auto w-2/3 text-center my-16">
-                <motion.h1 className='text-4xl font-bold lg:text-6xl md:text-5xl '
+                <motion.h1 className='text-3xl sm:text-4xl font-bold lg:text-6xl md:text-5xl '
                     initial={{
                         y: "-15vh",
                         opacity: 0

@@ -44,8 +44,8 @@ export default function Step3() {
 
 
     return (
-        <div className="mx-auto text-center w-[300px] mt-24">
-            <motion.div className="heading text-3xl font-semibold border-b-2 border-white pb-4"
+        <div className="mx-auto text-center w-[300px] mt-24 scale-90 sm:scale-100">
+            <motion.div className="heading text-3xl font-semibold border-b-2 border-white pb-4 "
                 initial={{
                     y: "-10vh",
                     opacity: 0

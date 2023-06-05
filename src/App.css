@@ -17,3 +17,13 @@ body {
 .custom-shadow {
   box-shadow: 0 1px 4px white;
 }
+
+#root{
+  width: 100% !important;
+}
+
+@media screen and (max-width: 450px) {
+  body {
+    min-width: 450px;
+  }
+}

@@ -48,9 +48,9 @@ function App() {
         <Route path='/Otaku_A_Anime_Discover/step2' element={<><Step2 /></>} />
         <Route path='/Otaku_A_Anime_Discover/step3' element={<><Step3 /></>} />
         <Route path='/Otaku_A_Anime_Discover/step4' element={<><Step4 /></>} />
-        <Route path='/Otaku_A_Anime_Discover/choice' element={<><Choice /></>} />
+        <Route path='/Otaku_A_Anime_Discover/choice' element={<><Choice /><Footer /></>} />
       </Routes>
-      <Footer />
+      
     </Contexts.Provider>
   );
 }
