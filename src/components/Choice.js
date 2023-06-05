@@ -7,10 +7,9 @@ import { motion } from 'framer-motion';
 
 export default function Choice() {
     document.title = "Otaku : Recommended";
-    const { genres, status, rating, year, handleStart } = useContext(Contexts);
+    const { genres, status, rating, year, handleStart, loading, setLoading } = useContext(Contexts);
     const [data, setData] = useState([]);
     const [noResult, setNoResult] = useState(false);
-    const [loading, setLoading] = useState(false);
     const [internetError, setInternetError] = useState(false);
 
     let fetchAnime = async () => {

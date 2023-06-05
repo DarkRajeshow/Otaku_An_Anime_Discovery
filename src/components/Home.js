@@ -101,7 +101,6 @@ export default function Home() {
                         type: "spring",
                         duration: 1,
                     }}
-                    drag
                 />
                 }
             </div>

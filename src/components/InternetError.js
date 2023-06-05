@@ -6,7 +6,7 @@ export default function InternetError() {
     const { handleStart } = useContext(Contexts);
     return (
         <>
-            <div className="container m-auto text-center border-b-2 border-white mb-3 border-spacing-2 py-3 scale-[0.8] md:scale-100">
+            <div className="container m-auto text-center border-b-2 border-white mb-40 border-spacing-2 py-3 scale-[0.8] md:scale-100">
                 <div className="md:h-[320px] px-5 h-[380px] overflow-hidden bg-black rounded-lg">
                     <i className="fa-regular fa-face-grin-beam-sweat text-6xl text-[#c1daff] m-10 mb-5"></i>
                     <h2 className='text-4xl font-bold text-center pb-3 '>Internet Connection lost.</h2>

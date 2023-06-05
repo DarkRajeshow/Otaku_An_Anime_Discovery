@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { motion } from 'framer-motion';
+import { Contexts } from '../App';
 
 const Footer = () => {
   const [showFooter, setShowFooter] = useState(false);
-
+  const { loading } = useContext(Contexts);
   const socialIcons = [
     { icon: faFacebook, link: 'https://www.facebook.com' },
     { icon: faGithub, link: 'https://github.com/DarkRajeshow/' },
@@ -28,7 +29,7 @@ const Footer = () => {
     };
   }, []);
 
-  if (!showFooter) {
+  if (!showFooter || loading) {
     return null;
   }
 
@@ -52,12 +53,12 @@ const Footer = () => {
       }}
     >
       <div className="name mb-10 flex align-middle my-5">
-        <h1 className='text-2xl font-bold my-auto border-r-4 border-white pr-5'>DarkRajeshow</h1>
+        <h1 className='md:text-3xl text-[16px] font-bold my-auto border-r-4 border-white pr-5'>DarkRajeshow</h1>
       </div>
       <div className="footer-icons text-right my-5">
         {socialIcons.map(({ icon, link }) => (
           <motion.a
-            className='text-3xl mx-2'
+            className='md:text-3xl text-[16px] mx-1'
             key={link}
             href={link}
             target="_blank"

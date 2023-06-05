@@ -21,6 +21,7 @@ function App() {
   const [rating, setRating] = useState([]);
   const [status, setStatus] = useState("");
   const [year, setYear] = useState("");
+  const [loading, setLoading] = useState(false);
 
   let handleStart = () => {
     setGenres([])
@@ -39,7 +40,7 @@ function App() {
   }
 
   return (
-    <Contexts.Provider value={{ genres, setGenres, status, setStatus, rating, setRating, year, setYear, handleStart, NavigateHome }}>
+    <Contexts.Provider value={{ genres, setGenres, status, setStatus, rating, setRating, year, setYear, handleStart, NavigateHome, loading, setLoading }}>
       <NavBar />
       <Routes>
         <Route path='/Otaku_A_Anime_Discover' element={<><Home /></>} />
@@ -49,7 +50,7 @@ function App() {
         <Route path='/Otaku_A_Anime_Discover/step4' element={<><Step4 /></>} />
         <Route path='/Otaku_A_Anime_Discover/choice' element={<><Choice /></>} />
       </Routes>
-      <Footer/>
+      <Footer />
     </Contexts.Provider>
   );
 }
