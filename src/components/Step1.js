@@ -159,13 +159,13 @@ export default function Step1() {
                     initial={{
                         scale: 3,
                         opacity: 0,
-                        y: "10vh"
+                        y: "5vh"
                     }}
                     animate={{
                         opacity: genres.length !== 0 ? 1 : 0,
                         transition: { type: 'spring', stiffness: 50 },
                         scale: genres.length !== 0 ? 1.2 : 2,
-                        y: genres.length !== 0 ? 0 : "10vh"
+                        y: genres.length !== 0 ? 0 : "5vh"
                     }}
                     whileHover={{
                         scale: 1.4,
