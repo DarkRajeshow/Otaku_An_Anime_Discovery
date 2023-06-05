@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Otaku_A_Anime_Discover/static/css/main.41048969.css",
-    "main.js": "/Otaku_A_Anime_Discover/static/js/main.296f01e7.js",
+    "main.css": "/Otaku_A_Anime_Discover/static/css/main.3ab26f41.css",
+    "main.js": "/Otaku_A_Anime_Discover/static/js/main.4e1827ee.js",
     "static/js/787.46fd1502.chunk.js": "/Otaku_A_Anime_Discover/static/js/787.46fd1502.chunk.js",
     "index.html": "/Otaku_A_Anime_Discover/index.html",
-    "main.41048969.css.map": "/Otaku_A_Anime_Discover/static/css/main.41048969.css.map",
-    "main.296f01e7.js.map": "/Otaku_A_Anime_Discover/static/js/main.296f01e7.js.map",
+    "main.3ab26f41.css.map": "/Otaku_A_Anime_Discover/static/css/main.3ab26f41.css.map",
+    "main.4e1827ee.js.map": "/Otaku_A_Anime_Discover/static/js/main.4e1827ee.js.map",
     "787.46fd1502.chunk.js.map": "/Otaku_A_Anime_Discover/static/js/787.46fd1502.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.41048969.css",
-    "static/js/main.296f01e7.js"
+    "static/css/main.3ab26f41.css",
+    "static/js/main.4e1827ee.js"
   ]
 }
