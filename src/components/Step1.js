@@ -154,7 +154,7 @@ export default function Step1() {
             </div>
 
             {
-                <Link to={'/step2'}><motion.button className='border-white border-2 px-8 py-2 rounded-[30px] font-semibold'
+                <Link to={'/Otaku_A_Anime_Discover/step2'}><motion.button className='border-white border-2 px-8 py-2 rounded-[30px] font-semibold'
 
                     initial={{
                         scale: 3,

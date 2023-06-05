@@ -22,10 +22,6 @@ export default function Step2() {
         }
     }
 
-    let playButtonStyling = {
-
-    }
-
     let optionSyling = {
         initial: {
             opacity: 0,
@@ -111,7 +107,7 @@ export default function Step2() {
             </div>
 
             {
-                <Link to={'/step3'}><motion.button className='border-white border-2 px-8 py-2 rounded-[30px] font-semibold'
+                <Link to={'/Otaku_A_Anime_Discover/step3'}><motion.button className='border-white border-2 px-8 py-2 rounded-[30px] font-semibold'
 
                     initial={{
                         scale: 3,

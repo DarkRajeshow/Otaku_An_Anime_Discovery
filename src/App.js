@@ -27,7 +27,7 @@ function App() {
     setRating([])
     setStatus("")
     setYear("")
-    navigate("/step1");
+    navigate("/Otaku_A_Anime_Discover/step1");
   }
 
   let NavigateHome = () => {
@@ -35,19 +35,19 @@ function App() {
     setRating([])
     setStatus("")
     setYear("")
-    navigate("/");
+    navigate("/Otaku_A_Anime_Discover");
   }
 
   return (
     <Contexts.Provider value={{ genres, setGenres, status, setStatus, rating, setRating, year, setYear, handleStart, NavigateHome }}>
       <NavBar />
       <Routes>
-        <Route path='/' element={<><Home /></>} />
-        <Route path='/step1' element={<><Step1 /></>} />
-        <Route path='/step2' element={<><Step2 /></>} />
-        <Route path='/step3' element={<><Step3 /></>} />
-        <Route path='/step4' element={<><Step4 /></>} />
-        <Route path='/choice' element={<><Choice /></>} />
+        <Route path='/Otaku_A_Anime_Discover' element={<><Home /></>} />
+        <Route path='/Otaku_A_Anime_Discover/step1' element={<><Step1 /></>} />
+        <Route path='/Otaku_A_Anime_Discover/step2' element={<><Step2 /></>} />
+        <Route path='/Otaku_A_Anime_Discover/step3' element={<><Step3 /></>} />
+        <Route path='/Otaku_A_Anime_Discover/step4' element={<><Step4 /></>} />
+        <Route path='/Otaku_A_Anime_Discover/choice' element={<><Choice /></>} />
       </Routes>
       <Footer/>
     </Contexts.Provider>

@@ -18,10 +18,10 @@ export default function Choice() {
             setLoading(true);
             setInternetError(false);
             setNoResult(false);
-            let animeData = await fetch(`https://kitsu.io/api/edge/anime?${genres.length != 0 ? `&filter[genres]=${genres.join(",")}` : ""}${status.length != 0 ? `&filter[status]=${status.join(",")}` : ""}${rating.length != "" ? `&filter[ageRating]=${rating.join(",")}` : ""}${year != "" ? `&filter[seasonYear]=${year}` : ""}&sort=popularityRank&page[limit]=12&fields[anime]=titles,description,posterImage,averageRating,episodeCount,status`);
+            let animeData = await fetch(`https://kitsu.io/api/edge/anime?${genres.length !== 0 ? `&filter[genres]=${genres.join(",")}` : ""}${status.length !== 0 ? `&filter[status]=${status.join(",")}` : ""}${rating.length !== "" ? `&filter[ageRating]=${rating.join(",")}` : ""}${year !== "" ? `&filter[seasonYear]=${year}` : ""}&sort=popularityRank&page[limit]=12&fields[anime]=titles,description,posterImage,averageRating,episodeCount,status`);
             let parsedAnimeData = await animeData.json();
             setLoading(false);
-            if (parsedAnimeData.data.length == 0) {
+            if (parsedAnimeData.data.length === 0) {
                 setNoResult(true);
                 setData([])
                 return;
@@ -37,6 +37,7 @@ export default function Choice() {
     useEffect(() => {
         fetchAnime();
     }, genres, status, rating, year)
+
     return (
         <>
             <div className="heading m-auto w-2/3 text-center my-16">
@@ -79,7 +80,6 @@ export default function Choice() {
                             }}
                             whileInView={{
                                 opacity: 1,
-                                transition: { type: 'spring', stiffness: 50 },
                                 scale: 1.2,
                                 y: 0,
                                 transition: {

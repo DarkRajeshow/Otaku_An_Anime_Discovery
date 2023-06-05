@@ -25,14 +25,14 @@ export default function Home() {
     useEffect(() => {
         setNewImage(false);
         const interval = setInterval(() => {
-            setImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+            setImageIndex((prevIndex) => (prevIndex + 1) % 5);
         }, 10000);
         setNewImage(true);
         return () => clearInterval(interval);
     }, []);
 
     return (
-        <div className="mx-auto w-10/12 mt-10 grid gap-6 grid-cols-1 min-[1430px]:grid-cols-2 border-b-2 pb-10 border-white">
+        <div className="mx-auto w-10/12 mt-10 grid gap-6 grid-cols-1 min-[1430px]:grid-cols-2 border-b-2 pb-10 border-white mb-32">
             <motion.div className="heading pb-4 grid-cols-1 px-[2%] py-5 "
                 key={imageIndex}
                 initial={{
@@ -55,7 +55,7 @@ export default function Home() {
             >
                 <h1 className='text-4xl font-bold py-5 sm:text-7xl'>Discover Your Perfect Anime.</h1>
                 <p className='text-lg '>Explore a world of captivating anime series tailored to your preferences. With Anime Finder, effortlessly discover the best anime based on your chosen genre, age rating, and more. Start your immersive journey into the world of anime today!</p>
-                <Link to={'/step1'}><motion.button className='border-white my-7 mx-5 border-2 px-8 py-2 rounded-[30px] font-semibold'
+                <Link to={'/Otaku_A_Anime_Discover/step1'}><motion.button className='border-white my-7 mx-5 border-2 px-8 py-2 rounded-[30px] font-semibold'
                     initial={{
                         scale: 3,
                         opacity: 0,
