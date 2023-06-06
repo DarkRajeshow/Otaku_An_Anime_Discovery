@@ -44,9 +44,6 @@ export default function Card(props) {
                             type: "spring",
                             duration: 1,
                         }}
-                        drag
-                        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                        dragElastic={0.1}
                     />
                 </div>
                 <div className="text py-4 px-5">
