@@ -1,11 +1,26 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
+import { Contexts } from '../App'
 
 export default function Card(props) {
+    let { setAnimeId, setvideoId , setShortDescription} = useContext(Contexts);
+
+    let openOverview = async () => {
+        await setAnimeId(props.card.id);
+        console.log(props.card.attributes.youtubeVideoId);
+        await setvideoId(props.card.attributes.youtubeVideoId);
+        await setShortDescription(props.card.attributes.description);
+        navigate("/Otaku_A_Anime_Discover/overview")
+    }
+
+    let navigate = useNavigate();
 
     return (
+
         <>
             <motion.div className="custom-shadow card gap-8 text-white rounded-md overflow-hidden cursor-pointer lg:h-auto md:h-[750px]"
+                onClick={openOverview}
                 initial={{
                     opacity: 0,
                     y: "50vh"

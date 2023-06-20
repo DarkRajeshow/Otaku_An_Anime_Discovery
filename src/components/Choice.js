@@ -7,23 +7,16 @@ import { motion } from 'framer-motion';
 
 export default function Choice() {
     document.title = "Otaku : Recommended";
-    const { genres, status, rating, year, handleStart, loading, setLoading } = useContext(Contexts);
+    const { genres, status, rating, year, handleStart, loading, setLoading, internetError, setInternetError, noResult, setNoResult } = useContext(Contexts);
     const [data, setData] = useState([]);
-    const [noResult, setNoResult] = useState(false);
-    const [internetError, setInternetError] = useState(false);
 
     let fetchAnime = async () => {
-        console.log(genres, status);
-        console.log(rating);
-        console.log(year);
         try {
             setLoading(true);
             setInternetError(false);
             setNoResult(false);
-            console.log(`https://kitsu.io/api/edge/anime?${genres.length !== 0 ? `&filter[genres]=${genres.join(",")}` : ""}${status.length !== 0 ? `&filter[status]=${status.join(",")}` : ""}${rating.length !== 0 ? `&filter[ageRating]=${rating.join(",")}` : ""}${year !== "" ? `&filter[seasonYear]=${year}` : ""}&sort=popularityRank&page[limit]=12&fields[anime]=titles,description,posterImage,averageRating,episodeCount,status`);
-            let animeData = await fetch(`https://kitsu.io/api/edge/anime?${genres.length !== 0 ? `&filter[genres]=${genres.join(",")}` : ""}${status.length !== 0 ? `&filter[status]=${status.join(",")}` : ""}${rating.length !== 0 ? `&filter[ageRating]=${rating.join(",")}` : ""}${year !== "" ? `&filter[seasonYear]=${year}` : ""}&sort=popularityRank&page[limit]=12&fields[anime]=titles,description,posterImage,averageRating,episodeCount,status`);
+            let animeData = await fetch(`https://kitsu.io/api/edge/anime?${genres.length !== 0 ? `&filter[genres]=${genres.join(",")}` : ""}${status.length !== 0 ? `&filter[status]=${status.join(",")}` : ""}${rating.length !== 0 ? `&filter[ageRating]=${rating.join(",")}` : ""}${year !== "" ? `&filter[seasonYear]=${year}` : ""}&sort=popularityRank&page[limit]=12&fields[anime]=titles,description,posterImage,averageRating,episodeCount,status,youtubeVideoId,showType`);
             let parsedAnimeData = await animeData.json();
-            console.log(parsedAnimeData);
             setLoading(false);
             if (parsedAnimeData.data.length === 0) {
                 setNoResult(true);
