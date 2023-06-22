@@ -9,15 +9,15 @@ export default function OverviewPage() {
     const { AnimeId, videoId, shortDescription, setNoResult, setInternetError, setLoading, setReviews, reviews, internetError, loading, noResult, handleStart, currentRating } = useContext(Contexts);
 
     const paradata = shortDescription.split(". ");
-    let fetchReviews = async () => {
+    const fetchReviews = async () => {
         try {
             setLoading(true);
             setInternetError(false);
             setNoResult(false);
 
-            let animeData = await fetch(`https://kitsu.io/api/edge/anime/${AnimeId}/reviews?fields[reviews]=likesCount,contentFormatted,rating,createdAt,source`);
+            const animeData = await fetch(`https://kitsu.io/api/edge/anime/${AnimeId}/reviews?fields[reviews]=likesCount,contentFormatted,rating,createdAt,source`);
 
-            let parsedAnimeReviews = await animeData.json();
+            const parsedAnimeReviews = await animeData.json();
 
             setLoading(false);
             if (parsedAnimeReviews.data.length === 0) {
@@ -37,19 +37,19 @@ export default function OverviewPage() {
         fetchReviews();
     }, [AnimeId])
 
+
+
     return (
         <>
             <div className='lg:mx-[15%] mt-4 lg:rounded-xl overflow-hidden'>
                 <motion.div className='relative w-full pb-[56.25%]'
                     initial={{
                         opacity: 0,
-                        y:"100vh"
                     }}
                     animate={{
-                        y:0,
                         opacity: 1,
-                        transition:{
-                            duration:2
+                        transition: {
+                            duration: 2
                         }
                     }}
                 >
@@ -83,15 +83,16 @@ export default function OverviewPage() {
                         }
                     }}
                 >
-                    <h1 className='lg:text-[4rem] text-2xl font-bold text-[#b7ffec]'>Story </h1>
+                    <h1 className='md:text-[4rem] sm:text-[3rem] text-4xl font-bold text-[#b7ffec]'>Story </h1>
                     <ul className='py-10'>
                         {
                             paradata.map((para, index) => {
-                                if (index % 2 == 0) {
+                                if (index % 2 === 0) {
                                     return (
                                         <li key={index} className='pb-3 lg:text-base text-base font-medium text-[#f9f9f9c4]'>{para + ". " + paradata[index + 1]}.</li>
                                     )
                                 }
+                                return null;
                             })
                         }
                     </ul>
@@ -119,10 +120,10 @@ export default function OverviewPage() {
                             }
                         }}
                     >
-                        <h1 className='lg:text-[4rem] text-2xl font-bold text-[#b7ffec] pt-5'>Rating and Reviews </h1>
+                        <h1 className='md:text-[4rem] sm:text-[3rem] text-4xl font-bold text-[#b7ffec] pt-5 lg:px-0 px-5'>Rating and Reviews </h1>
 
-                        <div className="rating py-10">
-                            <span className='lg:text-[8rem] md:text-[6rem] text-[4rem] font-bold pr-5'>{(currentRating / 10).toFixed(1)}</span>
+                        <div className="rating py-10 lg:px-0 px-5">
+                            <span className='lg:text-[8rem] md:text-[6rem] text-[3rem] font-bold pr-5'>{(currentRating / 10).toFixed(1)}</span>
                             <span className="lg:text-[8rem] md:text-[6rem] text-[4rem] font-bold fa-solid fa-star text-yellow-300"></span>
                         </div>
                     </motion.div>
@@ -186,3 +187,4 @@ export default function OverviewPage() {
         </>
     )
 }
+
