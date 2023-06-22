@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom'
 import { Contexts } from '../App'
 
 export default function Card(props) {
-    let { setAnimeId, setvideoId , setShortDescription} = useContext(Contexts);
+    let { setAnimeId, setvideoId , setShortDescription, setCurrentRating} = useContext(Contexts);
 
     let openOverview = async () => {
         await setAnimeId(props.card.id);
-        console.log(props.card.attributes.youtubeVideoId);
         await setvideoId(props.card.attributes.youtubeVideoId);
         await setShortDescription(props.card.attributes.description);
+        await setCurrentRating(props.card.attributes.averageRating);
         navigate("/Otaku_A_Anime_Discover/overview")
     }
 

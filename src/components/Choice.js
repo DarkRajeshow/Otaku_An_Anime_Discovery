@@ -83,7 +83,7 @@ export default function Choice() {
                                     type: "spring",
                                     stiffness: 200,
                                     duration: 0.7,
-                                    delay: 0.3,
+                                    delay: 0.1,
                                 }
                             }}
                             whileHover={{
@@ -100,8 +100,8 @@ export default function Choice() {
 
                 </>
             )}
-            {((internetError && noResult) || (internetError)) && <InternetError />}
-            {(!internetError && noResult) && <NoResultFound />}
+            {((internetError && noResult) || (internetError)) && <InternetError tryAgain={handleStart} />}
+            {(!internetError && noResult) && <NoResultFound errorMessage="Result Not Found." tryAgain={handleStart} />}
             {(loading) && <motion.div className='border-dotted border-r-4 border-l-4 border-t-4 w-14 m-auto h-14 border-white rounded-[100%]'
                 whileInView={{
                     rotate: 360,

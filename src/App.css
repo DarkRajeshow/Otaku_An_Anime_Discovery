@@ -27,3 +27,7 @@ body {
     min-width: 450px;
   }
 }
+
+.review-content>p{
+  padding-bottom: 6px;
+}

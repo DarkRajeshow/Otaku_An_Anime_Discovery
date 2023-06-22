@@ -2,8 +2,7 @@ import React, { useContext } from 'react'
 import { motion } from 'framer-motion'
 import { Contexts } from '../App'
 
-export default function InternetError() {
-    const { handleStart } = useContext(Contexts);
+export default function InternetError(props) {
     return (
         <>
             <div className="container m-auto text-center border-b-2 border-white mb-40 border-spacing-2 py-3 scale-[0.8] md:scale-100">
@@ -33,7 +32,7 @@ export default function InternetError() {
                             scale: 1,
                             transition: { type: 'tween', duration: 1 },
                         }}
-                        onClick={handleStart}
+                        onClick={props.tryAgain}
                     >Try Again.</motion.button>
                 </div>
             </div>

@@ -6,25 +6,23 @@ import InternetError from './InternetError';
 import NoResultFound from './NoResultFound';
 
 export default function OverviewPage() {
-    const { AnimeId, videoId, shortDescription, setNoResult, setInternetError, setLoading, setReviews, reviews, internetError, loading, noResult, handleStart } = useContext(Contexts);
+    const { AnimeId, videoId, shortDescription, setNoResult, setInternetError, setLoading, setReviews, reviews, internetError, loading, noResult, handleStart, currentRating } = useContext(Contexts);
 
+    const paradata = shortDescription.split(". ");
     let fetchReviews = async () => {
         try {
             setLoading(true);
             setInternetError(false);
             setNoResult(false);
-            console.log(`https://kitsu.io/api/edge/anime/${AnimeId}/reviews?fields[reviews]=likesCount,content,rating,createdAt`);
 
-            let animeData = await fetch(`https://kitsu.io/api/edge/anime/${AnimeId}/reviews?fields[reviews]=likesCount,contentFormatted,rating,createdAt`);
+            let animeData = await fetch(`https://kitsu.io/api/edge/anime/${AnimeId}/reviews?fields[reviews]=likesCount,contentFormatted,rating,createdAt,source`);
 
             let parsedAnimeReviews = await animeData.json();
-
-            console.log(parsedAnimeReviews);
 
             setLoading(false);
             if (parsedAnimeReviews.data.length === 0) {
                 setNoResult(true);
-                setReviews([])
+                setReviews([]);
                 return;
             }
             setReviews(parsedAnimeReviews.data)
@@ -42,7 +40,19 @@ export default function OverviewPage() {
     return (
         <>
             <div className='lg:mx-[15%] mt-4 lg:rounded-xl overflow-hidden'>
-                <div className='relative w-full pb-[56.25%]'>
+                <motion.div className='relative w-full pb-[56.25%]'
+                    initial={{
+                        opacity: 0,
+                        y:"100vh"
+                    }}
+                    animate={{
+                        y:0,
+                        opacity: 1,
+                        transition:{
+                            duration:2
+                        }
+                    }}
+                >
                     <iframe
                         className='absolute top-0 left-0 w-full h-full'
                         src={`https://www.youtube.com/embed/${videoId}`}
@@ -50,55 +60,129 @@ export default function OverviewPage() {
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowFullScreen
                     ></iframe>
-                </div>
-            </div>
-            <div className="discription">
-                <h1>Story: </h1>
-                <p>{shortDescription}</p>
-            </div>
-            <div className="reviews">
-                <h1>Reviews:</h1>
-                {(!noResult && !internetError) && (
-                    <>
-                        <div className="grid md:grid-col-2 w-10/12 m-auto gap-2 pb-10 lg:grid-cols-3 grid-cols-1 mb-28">
-                            {Array.isArray(reviews) && reviews.map((review, index) => (
-                                <ReviewCard review={review} index={index} key={review.id} />
-                            ))}
-                            {(!loading) && <motion.button className='border-white border-2 px-8 py-2 rounded-[30px] font-semibold mt-5 m-auto md:col-span-3 '
 
-                                initial={{
-                                    scale: 3,
-                                    opacity: 0,
-                                    y: "10vh"
-                                }}
-                                whileInView={{
-                                    opacity: 1,
-                                    scale: 1.2,
-                                    y: 0,
-                                    transition: {
-                                        type: "spring",
-                                        stiffness: 200,
-                                        duration: 0.7,
-                                        delay: 0.3,
-                                    }
-                                }}
-                                whileHover={{
-                                    scale: 1.4,
-                                    transition: { type: 'tween', delay: 0 },
-                                }}
-                                whileTap={{
-                                    scale: 1,
-                                    transition: { type: 'tween', duration: 1 },
-                                }}
-                                onClick={handleStart}
-                            >Try Again.</motion.button>}
+                </motion.div>
+                <motion.div className="description my-14 lg:px-0 px-5"
+                    initial={{
+                        opacity: 0,
+                        x: "50vh"
+                    }}
+                    whileInView={{
+                        x: 0,
+                        opacity: 1,
+                        transition: {
+                            type: "just",
+                            duration: 1
+                        }
+                    }}
+                    animate={{
+                        opacity: 1,
+                        transition: {
+                            type: "just",
+                            duration: 1
+                        }
+                    }}
+                >
+                    <h1 className='lg:text-[4rem] text-2xl font-bold text-[#b7ffec]'>Story </h1>
+                    <ul className='py-10'>
+                        {
+                            paradata.map((para, index) => {
+                                if (index % 2 == 0) {
+                                    return (
+                                        <li key={index} className='pb-3 lg:text-base text-base font-medium text-[#f9f9f9c4]'>{para + ". " + paradata[index + 1]}.</li>
+                                    )
+                                }
+                            })
+                        }
+                    </ul>
+                </motion.div>
+
+                <div className="reviews">
+                    <motion.div className="heading"
+                        initial={{
+                            opacity: 0,
+                            x: "-50vh"
+                        }}
+                        whileInView={{
+                            x: 0,
+                            opacity: 1,
+                            transition: {
+                                type: "just",
+                                duration: 1
+                            }
+                        }}
+                        animate={{
+                            opacity: 1,
+                            transition: {
+                                type: "just",
+                                duration: 1
+                            }
+                        }}
+                    >
+                        <h1 className='lg:text-[4rem] text-2xl font-bold text-[#b7ffec] pt-5'>Rating and Reviews </h1>
+
+                        <div className="rating py-10">
+                            <span className='lg:text-[8rem] md:text-[6rem] text-[4rem] font-bold pr-5'>{(currentRating / 10).toFixed(1)}</span>
+                            <span className="lg:text-[8rem] md:text-[6rem] text-[4rem] font-bold fa-solid fa-star text-yellow-300"></span>
                         </div>
+                    </motion.div>
+                    {(!noResult && !internetError && !loading) && (
+                        <>
+                            <div className="w-full m-auto pb-10 mb-28 ">
+                                {Array.isArray(reviews) && reviews.map((review, index) => (
+                                    <ReviewCard review={review} index={index} key={review.id} />
+                                ))}
+                                <div className="button text-center py-10">
+                                    {(!loading) && <motion.button className='border-white border-2 px-8 py-2 rounded-[30px] font-semibold mx-auto md:col-span-3 '
+                                        onClick={
+                                            () => {
+                                                handleStart();
+                                            }
+                                        }
+                                        initial={{
+                                            scale: 3,
+                                            opacity: 0,
+                                            y: "10vh"
+                                        }}
+                                        whileInView={{
+                                            opacity: 1,
+                                            scale: 1.2,
+                                            y: 0,
+                                            transition: {
+                                                type: "spring",
+                                                stiffness: 200,
+                                                duration: 0.7,
+                                                delay: 0.3,
+                                            }
+                                        }}
+                                        whileHover={{
+                                            scale: 1.4,
+                                            transition: { type: 'tween', delay: 0 },
+                                        }}
+                                        whileTap={{
+                                            scale: 1,
+                                            transition: { type: 'tween', duration: 1 },
+                                        }}
+                                    >Try again from start.</motion.button>}
+                                </div>
+                            </div>
+                        </>
+                    )}
+                    {((loading) && (!internetError)) && <motion.div className='border-dotted border-r-4 border-l-4 border-t-4 w-14 m-auto h-14 border-white rounded-[100%] mb-52'
+                        whileInView={{
+                            rotate: 360,
+                            transition: {
+                                duration: 2,
+                                repeat: Infinity
+                            }
+                        }}
+                    >
+                    </motion.div>}
 
-                    </>
-                )}
-                {((internetError && noResult) || (internetError)) && <InternetError />}
-                {(!internetError && noResult) && <NoResultFound />}
-            </div>
+                    {((internetError && noResult) || (internetError)) && <InternetError tryAgain={fetchReviews} />}
+                    {(!internetError && noResult) && <NoResultFound errorMessage="Reviews not availible." tryAgain={fetchReviews} />}
+                </div>
+            </div >
         </>
     )
 }
