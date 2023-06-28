@@ -1,6 +1,5 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
-import { Contexts } from '../App'
 
 export default function  NoResultFound(props) {
     return (

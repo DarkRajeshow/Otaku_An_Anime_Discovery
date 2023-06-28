@@ -31,3 +31,11 @@ body {
 .review-content>p{
   padding-bottom: 6px;
 }
+
+.scroll-container {
+  overflow: auto;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}

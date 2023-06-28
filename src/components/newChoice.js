@@ -4,37 +4,40 @@ import Card from './Card';
 import InternetError from './InternetError';
 import NoResultFound from './NoResultFound';
 import { motion } from 'framer-motion';
+import InfiniteScroll from 'react-infinite-scroll-component';
+
 
 export default function Choice() {
     document.title = "Otaku : Recommended";
     const { genres, status, rating, year, handleStart, loading, setLoading, internetError, setInternetError, noResult, setNoResult } = useContext(Contexts);
     const [data, setData] = useState([]);
+    const [pageNo, setPageNo] = useState(1);
 
-    let fetchAnime = async () => {
+    const fetchAnime = async () => {
         try {
             setLoading(true);
             setInternetError(false);
             setNoResult(false);
-            let animeData = await fetch(`https://kitsu.io/api/edge/anime?${genres.length !== 0 ? `&filter[genres]=${genres.join(",")}` : ""}${status.length !== 0 ? `&filter[status]=${status.join(",")}` : ""}${rating.length !== 0 ? `&filter[ageRating]=${rating.join(",")}` : ""}${year !== "" ? `&filter[seasonYear]=${year}` : ""}&sort=popularityRank&page[limit]=20&fields[anime]=titles,description,posterImage,averageRating,episodeCount,status,youtubeVideoId,showType`);
-
-            let parsedAnimeData = await animeData.json();
+            const animeData = await fetch(`https://kitsu.io/api/edge/anime?${genres.length !== 0 ? `&filter[genres]=${genres.join(",")}` : ""}${status.length !== 0 ? `&filter[status]=${status.join(",")}` : ""}${rating.length !== 0 ? `&filter[ageRating]=${rating.join(",")}` : ""}${year !== "" ? `&filter[seasonYear]=${year}` : ""}&sort=popularityRank&page[limit]=6&page[offset]=${(pageNo - 1) * 6}&fields[anime]=titles,description,posterImage,averageRating,episodeCount,status,youtubeVideoId,showType`);
+            const parsedAnimeData = await animeData.json();
             setLoading(false);
+
             if (parsedAnimeData.data.length === 0) {
                 setNoResult(true);
-                setData([])
                 return;
             }
-            setData(parsedAnimeData.data)
-        }
-        catch {
+
+            setData((prevData) => [...prevData, ...parsedAnimeData.data]);
+        } catch {
             setLoading(false);
-            setInternetError(true)
+            setInternetError(true);
         }
-    }
+    };
+
 
     useEffect(() => {
         fetchAnime();
-    }, [genres, status, rating, year])
+    }, [genres, status, rating, year, pageNo])
 
     return (
         <>
@@ -64,11 +67,20 @@ export default function Choice() {
                 >Recommendations Derived from Your Unique Preferences</motion.p>
             </div>
             {(!noResult && !internetError) && (
-                <>
-                    <div className="grid md:grid-col-2 w-10/12 m-auto gap-2 pb-10 lg:grid-cols-3 grid-cols-1 mb-28">
-                        {data.map((card, index) => (
-                            <Card card={card} index={index} key={card.id} />
-                        ))}
+                <div>
+                    <InfiniteScroll
+                        dataLength={data.length}
+                        next={() => setPageNo((prevPageNo) => prevPageNo + 1)}
+                        hasMore={true}
+                        className='scroll-container'
+                    // loader={<div className="loader">Loading...</div>}
+                    >
+                        <div className="grid md:grid-col-2 w-10/12 m-auto gap-2 pb-10 lg:grid-cols-3 grid-cols-1 mb-28">
+                            {data.map((card, index) => (
+                                <Card card={card} index={index} key={card.id} />
+                            ))}
+                        </div>
+
                         {(!loading) && <motion.button className='border-white border-2 px-8 py-2 rounded-[30px] font-semibold mt-5 m-auto md:col-span-3 '
 
                             initial={{
@@ -76,6 +88,7 @@ export default function Choice() {
                                 opacity: 0,
                                 y: "10vh"
                             }}
+
                             whileInView={{
                                 opacity: 1,
                                 scale: 1.2,
@@ -97,22 +110,25 @@ export default function Choice() {
                             }}
                             onClick={handleStart}
                         >Try Again.</motion.button>}
-                    </div>
+                    </InfiniteScroll>
 
-                </>
-            )}
+                </div>
+            )
+            }
             {((internetError && noResult) || (internetError)) && <InternetError tryAgain={handleStart} />}
             {(!internetError && noResult) && <NoResultFound errorMessage="Result Not Found." tryAgain={handleStart} />}
-            {(loading) && <motion.div className='border-dotted border-r-4 border-l-4 border-t-4 w-14 m-auto h-14 border-white rounded-[100%]'
-                whileInView={{
-                    rotate: 360,
-                    transition: {
-                        duration: 2,
-                        repeat: Infinity
-                    }
-                }}
-            >
-            </motion.div>}
+            {
+                (loading) && <motion.div className='border-dotted border-r-4 border-l-4 border-t-4 w-14 m-auto h-14 border-white rounded-[100%]'
+                    whileInView={{
+                        rotate: 360,
+                        transition: {
+                            duration: 2,
+                            repeat: Infinity
+                        }
+                    }}
+                >
+                </motion.div>
+            }
 
 
         </>

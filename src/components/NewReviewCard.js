@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import RatingStars from './RatingStars';
 import { motion } from 'framer-motion';
 
-export default function ReviewCard(props) {
+export default function NewReviewCard(props) {
 
     const dateString = props.review.attributes.createdAt;
     const date = new Date(dateString);
@@ -78,7 +78,7 @@ export default function ReviewCard(props) {
                 >
                     <div className='pr-10 text-xl'>
                         <span className='pr-2'>{likesCount}</span>
-                        <i className={`${isLiked ? "fa-solid" : "fa-regular"} fa-thumbs-up`}></i>
+                        <i class={`${isLiked ? "fa-solid" : "fa-regular"} fa-thumbs-up`}></i>
                     </div>
                 </div>
 
