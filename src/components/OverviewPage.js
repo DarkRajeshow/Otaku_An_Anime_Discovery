@@ -7,7 +7,10 @@ import NoResultFound from './NoResultFound';
 import AddComment from './Comment';
 
 export default function OverviewPage() {
-    const { AnimeId, videoId, shortDescription, setNoResult, setInternetError, setLoading, setReviews, reviews, internetError, loading, noResult, handleStart, currentRating } = useContext(Contexts);
+
+    const { AnimeId, videoId, shortDescription, setNoResult, setInternetError, setLoading, setReviews, reviews, internetError, loading, noResult, handleStart, currentRating, currentAnimeOverview } = useContext(Contexts);
+
+    document.title = `Otaku : ${currentAnimeOverview} Overview`;
 
     const paradata = shortDescription.split(". ");
     const fetchReviews = async () => {
@@ -42,6 +45,7 @@ export default function OverviewPage() {
 
     return (
         <>
+            <h1 className='md:text-[3rem] sm:text-[2rem] text-3xl font-bold text-[#b7ffec] text-center pb-10 pt-20 leading-snug px-5'>{currentAnimeOverview}</h1>
             <div className='lg:mx-[15%] mt-4 lg:rounded-xl overflow-hidden'>
                 <motion.div className='relative w-full pb-[56.25%]'
                     initial={{
@@ -188,7 +192,7 @@ export default function OverviewPage() {
                                 }}
                             >Try again from start.</motion.button>}
                         </div>
-                        </>
+                    </>
                     }
 
 

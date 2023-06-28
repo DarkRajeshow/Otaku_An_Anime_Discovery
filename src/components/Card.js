@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router-dom'
 import { Contexts } from '../App'
 
 export default function Card(props) {
-    const { setAnimeId, setvideoId, setShortDescription, setCurrentRating, searchedAnimeName, calculateMatchPercentage } = useContext(Contexts);
+    const { setAnimeId, setvideoId, setShortDescription, setCurrentRating, searchedAnimeName, calculateMatchPercentage, setCurrentAnimeOverview } = useContext(Contexts);
     const [imageOpacity, setImageOpacity] = useState(1)
     const navigate = useNavigate();
 
 
     const openOverview = async () => {
         console.log(searchedAnimeName);
+        await setCurrentAnimeOverview((props.card.attributes.titles.en ? props.card.attributes.titles.en : props.card.attributes.titles.en_us ? props.card.attributes.titles.en_us : props.card.attributes.titles.en_jp ? props.card.attributes.titles.en_jp : props.card.attributes.titles.ja_jp ? props.card.attributes.titles.ja_jp : ""))
         await setAnimeId(props.card.id);
         await setvideoId(props.card.attributes.youtubeVideoId);
         await setShortDescription(props.card.attributes.description);

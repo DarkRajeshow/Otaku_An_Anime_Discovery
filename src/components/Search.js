@@ -7,7 +7,15 @@ import { motion } from 'framer-motion';
 
 export default function Search() {
 
-  const { searchedAnimeList, loading, noResult, internetError, searchAnime } = useContext(Contexts);
+  
+  const { searchedAnimeList, loading, noResult, internetError, searchAnime, searchedAnimeName } = useContext(Contexts);
+
+  if (searchedAnimeName === "") {
+    document.title = "Otaku : Search Anime"
+  }
+  else{
+    document.title = `Otaku : Searched for "${searchedAnimeName}"`
+  }
 
   return (
     <>

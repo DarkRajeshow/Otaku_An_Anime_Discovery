@@ -23,6 +23,7 @@ function App() {
   const [year, setYear] = useState("");
   const [loading, setLoading] = useState(false);
   const [AnimeId, setAnimeId] = useState("7442");
+  const [currentAnimeOverview, setCurrentAnimeOverview] = useState("Attack on titan")
   const [videoId, setvideoId] = useState("LHtdKWJdif4");
   const [reviews, setReviews] = useState("");
   const [searchedAnimeList, setSearchedAnimeList] = useState([]);
@@ -128,12 +129,12 @@ function App() {
     let matchPercentage = (matchedTerms / totalTerms) * 100;
     matchPercentage = Math.round(matchPercentage);
 
-    return matchPercentage+"% Match";
+    return matchPercentage + "% Match";
   };
 
 
   return (
-    <Contexts.Provider value={{ genres, setGenres, status, setStatus, rating, setRating, year, setYear, handleStart, NavigateHome, loading, setLoading, AnimeId, setAnimeId, videoId, setvideoId, shortDescription, setShortDescription, reviews, setReviews, noResult, setNoResult, internetError, setInternetError, currentRating, setCurrentRating, NavigateSearchPage, searchedAnimeList, setSearchedAnimeList, searchedAnimeName, setSearchedAnimeName, searchAnime, calculateMatchPercentage, setIsItSearchPage }}>
+    <Contexts.Provider value={{ genres, setGenres, status, setStatus, rating, setRating, year, setYear, handleStart, NavigateHome, loading, setLoading, AnimeId, setAnimeId, videoId, setvideoId, shortDescription, setShortDescription, reviews, setReviews, noResult, setNoResult, internetError, setInternetError, currentRating, setCurrentRating, NavigateSearchPage, searchedAnimeList, setSearchedAnimeList, searchedAnimeName, setSearchedAnimeName, searchAnime, calculateMatchPercentage, setIsItSearchPage, currentAnimeOverview, setCurrentAnimeOverview }}>
       <NavBar />
       <Routes>
         <Route path='/Otaku_A_Anime_Discover' element={<><Home /></>} />
