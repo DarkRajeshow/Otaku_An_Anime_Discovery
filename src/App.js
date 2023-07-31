@@ -67,7 +67,7 @@ function App() {
         setLoading(true);
         setInternetError(false);
         setNoResult(false);
-        const searchedAnime = await fetch(`https://kitsu.io/api/edge/anime?sort=-averageRating,-popularityRank,-startDate&page[limit]=20&fields[anime]=titles,description,posterImage,averageRating,episodeCount,status,youtubeVideoId,showType`);
+        const searchedAnime = await fetch(`https://kitsu.io/api/edge/anime?sort=-averageRating,-popularityRank&page[limit]=20&fields[anime]=titles,description,posterImage,averageRating,episodeCount,status,youtubeVideoId,showType`);
         const paredsearchedAnime = await searchedAnime.json();
         setLoading(false);
         if (paredsearchedAnime.data.length === 0) {
