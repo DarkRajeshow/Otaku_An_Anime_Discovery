@@ -64,6 +64,7 @@ export default function Card(props) {
                             duration: 0.6,
                         }}
 
+                        loading='lazy'
                     />
                     {<motion.h2
                         className="text-overlay absolute top-0 left-0 flex items-center justify-center m-auto w-full h-[75%] text-center z-10 my-auto text-white font-bold text-[1.1rem]"

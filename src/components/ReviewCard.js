@@ -50,7 +50,7 @@ export default function ReviewCard(props) {
                     onClick={toggleExpand}
                 >
                     <div className="heading mb-5">
-                        <i className="fa-solid fa-circle-user text-3xl pr-3"></i>
+                        <i className="fa-solid fa-sitemap text-3xl pr-3"></i>
                         <span className='text-3xl font-bold capitalize'>{props.review.attributes.source}</span>
                         <div className='text-gray-400 font-bold'>On {formatedPublishedDate}</div>
                         <div className='pr-10'><RatingStars rating={props.review.attributes.rating} /></div>

@@ -127,6 +127,8 @@ export default function Home() {
                         type: "spring",
                         duration: 1,
                     }}
+
+                    loading='lazy'
                 />
                 }
             </div>

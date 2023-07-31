@@ -155,7 +155,7 @@ export default function OverviewPage() {
                     </motion.div>}
 
                     {((internetError && noResult) || (internetError)) && <InternetError tryAgain={fetchReviews} />}
-                    {(!internetError && noResult) && <NoResultFound errorMessage="Reviews not availible." tryAgain={fetchReviews} />}
+                    {(!internetError && noResult) && <NoResultFound errorMessage="📝 Reviews not posted yet! Be the first one to share your thoughts. 🚀 Write a review now! 😄" tryAgain={fetchReviews} />}
 
                     {(!internetError) && <>
                         <AddComment />

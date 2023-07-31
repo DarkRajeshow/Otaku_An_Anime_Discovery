@@ -146,7 +146,6 @@ function App() {
         <Route path='/Otaku_A_Anime_Discover/overview' element={<><OverviewPage /></>} />
         <Route path='/Otaku_A_Anime_Discover/search' element={<><Search /></>} />
       </Routes>
-
     </Contexts.Provider>
   );
 }
