@@ -16,7 +16,7 @@ export default function Card(props) {
         await setvideoId(props.card.attributes.youtubeVideoId);
         await setShortDescription(props.card.attributes.description);
         await setCurrentRating(props.card.attributes.averageRating);
-        navigate("/Otaku_A_Anime_Discover/overview")
+        navigate("/Otaku_An_Anime_Discovery/overview")
     }
 
     return (

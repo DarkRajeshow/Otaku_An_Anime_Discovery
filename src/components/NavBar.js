@@ -20,7 +20,7 @@ export default function NavBar() {
     }
 
     useEffect(() => {
-        if (location.pathname === '/Otaku_A_Anime_Discover/search' && inputRef.current) {
+        if (location.pathname === '/Otaku_An_Anime_Discovery/search' && inputRef.current) {
             searchAnime();
             setIsItSearchPage(true);
             inputRef.current.focus();
@@ -104,7 +104,7 @@ export default function NavBar() {
             < div className="serachLink flex align-middle font-bold justify-between p-0"
 
             >
-                {location.pathname == "/Otaku_A_Anime_Discover/search" && <motion.input
+                {location.pathname == "/Otaku_An_Anime_Discovery/search" && <motion.input
                     value={searchedAnimeName}
                     onChange={handleChange}
                     initial={{
@@ -125,7 +125,7 @@ export default function NavBar() {
                 />}
 
                 <motion.i className="fas fa-search my-auto cursor-pointer lg:px-16 md:px-12 px-4 text-[2rem] sm:text-[2.5rem] md:text-[4rem]"
-                    onClick={location.pathname == "/Otaku_A_Anime_Discover/search" ? searchAnime : () => {
+                    onClick={location.pathname == "/Otaku_An_Anime_Discovery/search" ? searchAnime : () => {
                         NavigateSearchPage()
                         searchAnime()
                     }}

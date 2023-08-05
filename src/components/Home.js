@@ -58,7 +58,7 @@ export default function Home() {
                 <h1 className='text-4xl font-bold py-5 sm:text-7xl'>Discover Your Perfect Anime.</h1>
                 <p className='text-lg '>Explore a world of captivating anime series tailored to your preferences. With Anime Finder, effortlessly discover the best anime based on your chosen genre, age rating, and more. Start your immersive journey into the world of anime today!</p>
                 <div className=''>
-                    <Link to={'/Otaku_A_Anime_Discover/step1'}><motion.button className='border-black mt-7 mx-5 border-2 px-4 py-2 mr-10 rounded-[30px] font-bold bg-white text-black'
+                    <Link to={'/Otaku_An_Anime_Discovery/step1'}><motion.button className='border-black mt-7 mx-5 border-2 px-4 py-2 mr-10 rounded-[30px] font-bold bg-white text-black'
                         initial={{
                             scale: 1,
                             opacity: 0,
@@ -77,7 +77,7 @@ export default function Home() {
 
                     >Discover Anime! 👁️🎯</motion.button></Link>
                     {/* <br /> */}
-                    <Link to={'/Otaku_A_Anime_Discover/search'}><motion.button className='border-white mt-5 mx-5 border-2 px-4 py-2 rounded-[30px] font-semibold'
+                    <Link to={'/Otaku_An_Anime_Discovery/search'}><motion.button className='border-white mt-5 mx-5 border-2 px-4 py-2 rounded-[30px] font-semibold'
                         initial={{
                             scale: 1,
                             opacity: 0,

@@ -41,7 +41,7 @@ function App() {
     setRating([])
     setStatus("")
     setYear("")
-    navigate("/Otaku_A_Anime_Discover/step1");
+    navigate("/Otaku_An_Anime_Discovery/step1");
   }
 
   let NavigateHome = () => {
@@ -49,7 +49,7 @@ function App() {
     setRating([])
     setStatus("")
     setYear("")
-    navigate("/Otaku_A_Anime_Discover");
+    navigate("/Otaku_An_Anime_Discovery");
   }
 
   let NavigateSearchPage = () => {
@@ -57,7 +57,7 @@ function App() {
     setRating([])
     setStatus("")
     setYear("")
-    navigate("/Otaku_A_Anime_Discover/search");
+    navigate("/Otaku_An_Anime_Discovery/search");
   }
 
   const searchAnime = async () => {
@@ -137,14 +137,14 @@ function App() {
     <Contexts.Provider value={{ genres, setGenres, status, setStatus, rating, setRating, year, setYear, handleStart, NavigateHome, loading, setLoading, AnimeId, setAnimeId, videoId, setvideoId, shortDescription, setShortDescription, reviews, setReviews, noResult, setNoResult, internetError, setInternetError, currentRating, setCurrentRating, NavigateSearchPage, searchedAnimeList, setSearchedAnimeList, searchedAnimeName, setSearchedAnimeName, searchAnime, calculateMatchPercentage, setIsItSearchPage, currentAnimeOverview, setCurrentAnimeOverview }}>
       <NavBar />
       <Routes>
-        <Route path='/Otaku_A_Anime_Discover' element={<><Home /></>} />
-        <Route path='/Otaku_A_Anime_Discover/step1' element={<><Step1 /></>} />
-        <Route path='/Otaku_A_Anime_Discover/step2' element={<><Step2 /></>} />
-        <Route path='/Otaku_A_Anime_Discover/step3' element={<><Step3 /></>} />
-        <Route path='/Otaku_A_Anime_Discover/step4' element={<><Step4 /></>} />
-        <Route path='/Otaku_A_Anime_Discover/choice' element={<><Choice /><Footer /></>} />
-        <Route path='/Otaku_A_Anime_Discover/overview' element={<><OverviewPage /></>} />
-        <Route path='/Otaku_A_Anime_Discover/search' element={<><Search /></>} />
+        <Route path='/Otaku_An_Anime_Discovery' element={<><Home /></>} />
+        <Route path='/Otaku_An_Anime_Discovery/step1' element={<><Step1 /></>} />
+        <Route path='/Otaku_An_Anime_Discovery/step2' element={<><Step2 /></>} />
+        <Route path='/Otaku_An_Anime_Discovery/step3' element={<><Step3 /></>} />
+        <Route path='/Otaku_An_Anime_Discovery/step4' element={<><Step4 /></>} />
+        <Route path='/Otaku_An_Anime_Discovery/choice' element={<><Choice /><Footer /></>} />
+        <Route path='/Otaku_An_Anime_Discovery/overview' element={<><OverviewPage /></>} />
+        <Route path='/Otaku_An_Anime_Discovery/search' element={<><Search /></>} />
       </Routes>
     </Contexts.Provider>
   );
